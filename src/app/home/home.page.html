@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ubicación Actual</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+      <ion-card-content>
+        <p><strong>Latitud:</strong> {{ latitude }}</p>
+        <p><strong>Longitud:</strong> {{ longitude }}</p>
+        
+      </ion-card-content>
+<ion-content class="ion-padding">
+  <div *ngIf="latitude !== null && longitude !== null">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Coordenadas</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+      <a [href]="'https://www.google.com/maps/@' + latitude + ',' + longitude + ',16z'" target="_blank">
+        Click aquí para abrir en Google Maps
+      </a>
+      <ion-item>
+        <ion-label >Nombre</ion-label>
+        <ion-input [(ngModel)]="nombre"></ion-input>
+      </ion-item>
+      <ion-button expand="block" (click)="guardarUbicacion()">
+        Guardar ubicación en la BDD
+      </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div *ngIf="latitude === null && longitude === null">
+    <p>Obteniendo ubicación...</p>
+  </div>
+</ion-content>
